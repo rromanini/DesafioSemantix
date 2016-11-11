@@ -1,0 +1,88 @@
+---
+title: "Semantix Challenge - First Part"
+author: "Rui Romanini"
+date: "10 de novembro de 2016"
+output:
+  html_document:
+    toc: yes
+  pdf_document:
+    toc: yes
+---
+
+In this challenge, suppose we are looking to do social network
+analysis for prospective customers. We want to extract from
+their social network a metric called "closeness centrality".
+
+Centrality metrics try to approximate a measure of influence
+of an individual within a social network. The distance between
+any two vertices is their shortest path. The *farness*
+of a given vertex *v* is the sum of all distances from each vertex
+to *v*. Finally, the *closeness* of a vertex *v* is the inverse
+of the *farness*.
+
+The first part of the challenge is to rank the vertices in a given
+graph by their *closeness*. The graph is provided in the attached
+file; each line of the file consists of two vertex names separated by a single space, representing an edge between those two nodes.
+
+##The environment
+It's important to pay atention to the environment, to make sure about reproducibility. 
+
+This code was produced using R version 3.3.1 and R Studio version 0.99.489
+
+The Operational System it's Windows 10 Home
+
+##Reading the graph
+
+In this step, the edges.dat file it's downloaded from the GitHub Repository and the vertices are read using read.csv function.
+Blank space used as separator and there is no Header in this file.
+Only two columns representing the vertices and the edge.
+
+
+```{r}
+vertices <- read.csv("C:\\Rui\\Data Science\\teste\\edges.dat" ,sep = " ",header = FALSE)
+```
+
+##Creating the graph from the data frame
+
+Now we can build the net from the vertices
+
+```{r}
+install.packages("igraph", repos = "http://cran.us.r-project.org")
+library(igraph)
+```
+
+```{r}
+net <-graph_from_data_frame(d=vertices,directed = T)
+```
+
+
+##Creating the plot
+
+Now we can build the plot showing the nodes and connections
+
+```{r}
+l <- layout_with_fr(net)
+l <- norm_coords(l, ymin=-1, ymax=1, xmin=-1, xmax=1)
+
+plot(net,edge.arrow.size=.05,vertex.size=10,
+     edge.curved=0.2,
+     vertex.frame.color="black",
+     vertex.color="green",
+     vertex.label.cex=0.5,rescale=F, layout=l*1.2)
+```
+
+##Getting the Closeness
+
+Now we can build the closeness
+
+```{r}
+closeness(net, mode="out", weights=NA)
+centr_clo(net, mode="out", normalized=T)
+estimate_closeness(net, mode = c("out", "in", "all",
+  "total"), cutoff, weights = NULL, normalized = FALSE)
+```
+
+
+##Resume
+
+Now we can build the closeness
