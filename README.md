@@ -13,3 +13,8 @@ desafioSemantix.html, contendo página html resultado do código R Markdown. O a
 edges.dat, arquivo texto, contendo os vertices e edges, a serem analisados. Os scripts R e R Markdown efetuam o download do arquivo, a partir deste repositório.
 
 Rplot01.pdf, arquivo contendo o plot do network, resultado do graph disponível no edges.dat
+
+
+Na pasta Part II, você poderá encontrar os seguintes artefatos:
+- arquivo DesafioDataScience.zip, contendo o projeto Java, com fontes e bibliotecas
+- arquivo DesafioDataScience.pdf, contendo explicação detalhada do projeto, ambiente, bibliotecas e arquitetura.
